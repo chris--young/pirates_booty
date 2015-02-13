@@ -1,0 +1,23 @@
+{
+  "name": "pirates_booty",
+  "version": "0.0.1",
+  "description": "An introduction to HTML5 canvas",
+  "main": "index.html",
+  "scripts": {
+    "test": "mocha public/tests.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:chris--young/pirates_boody.git"
+  },
+  "author": "Chris Young (cyoung@mobiquityinc.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chris--young/pirates_boody/issues"
+  },
+  "homepage": "https://github.com/chris--young/pirates_boody",
+  "dependencies": {
+    "body-parser": "^1.11.0",
+    "express": "^4.11.2"
+  }
+}

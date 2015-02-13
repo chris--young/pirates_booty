@@ -1,0 +1,14 @@
+@charset "UTF-8";
+
+@font-face {
+  font-family: 'Chunk Five';
+  src: url('fonts/chunkfive.eot');
+  src: url('fonts/chunkfive.eot?#iefix') format('embedded-opentype'),
+       url('fonts/chunkfive.woff2') format('woff2'),
+       url('fonts/chunkfive.woff') format('woff'),
+       url('fonts/chunkfive.ttf') format('truetype'),
+       url('fonts/chunkfive.svg#chunkfive') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
