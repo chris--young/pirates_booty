@@ -32,7 +32,7 @@ ball = {
   position: { x: 0, y: 0 },
   velocity: { x: 0, y: 0 },
   radius: 10,
-  speed: 8,
+  speed: 12,
   dead: true
 };
 
