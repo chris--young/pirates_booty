@@ -9,6 +9,7 @@ SCREEN_HEIGHT = document.body.offsetHeight;
 SAMPLE_RATE = 64;
 
 scoreAudio = new Audio();
+highScoreAudio = new Audio();
 highScore = undefined;
 isHighScore = false;
 
@@ -237,7 +238,8 @@ barrel = {
     requestAnimationFrame(loop);
   }
 
-  scoreAudio.src = 'audio/smw_coin.wav';
+  scoreAudio.src = 'audio/score.wav';
+  highScoreAudio.src = 'audio/high_score.wav';
 
   var shipImage,
       barrelImage;
@@ -512,8 +514,12 @@ exports.checkHighScore = function () {
     if (request.readyState != 4)
       return;
 
-    if (request.status == 201)
+    if (request.status == 201) {
+      if (!isHighScore)
+        highScoreAudio.play();
+
       isHighScore = true;
+    }
 
     if (request.status == 204)
       isHighScore = false;

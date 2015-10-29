@@ -8,6 +8,7 @@ SCREEN_HEIGHT = document.body.offsetHeight;
 SAMPLE_RATE = 64;
 
 scoreAudio = new Audio();
+highScoreAudio = new Audio();
 highScore = undefined;
 isHighScore = false;
 

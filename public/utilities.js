@@ -220,8 +220,12 @@ exports.checkHighScore = function () {
     if (request.readyState != 4)
       return;
 
-    if (request.status == 201)
+    if (request.status == 201) {
+      if (!isHighScore)
+        highScoreAudio.play();
+
       isHighScore = true;
+    }
 
     if (request.status == 204)
       isHighScore = false;

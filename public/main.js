@@ -189,7 +189,8 @@
     requestAnimationFrame(loop);
   }
 
-  scoreAudio.src = 'audio/smw_coin.wav';
+  scoreAudio.src = 'audio/score.wav';
+  highScoreAudio.src = 'audio/high_score.wav';
 
   var shipImage,
       barrelImage;
