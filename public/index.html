@@ -8,6 +8,17 @@
 
     <title>Pirate's Booty</title>
 
+    <!--
+
+        d8888b. d888888b d8888b.  .d8b.  d888888b d88888b Cb .d8888.      d8888b.  .d88b.   .d88b.  d888888b db    db
+        88  `8D   `88'   88  `8D d8' `8b `~~88~~' 88'     `D 88'  YP      88  `8D .8P  Y8. .8P  Y8. `~~88~~' `8b  d8'
+        88oodD'    88    88oobY' 88ooo88    88    88ooooo  ' `8bo.        88oooY' 88    88 88    88    88     `8bd8'
+        88~~~      88    88`8b   88~~~88    88    88~~~~~      `Y8b.      88~~~b. 88    88 88    88    88       88
+        88        .88.   88 `88. 88   88    88    88.        db   8D      88   8D `8b  d8' `8b  d8'    88       88
+        88      Y888888P 88   YD YP   YP    YP    Y88888P    `8888Y'      Y8888P'  `Y88P'   `Y88P'     YP       YP
+
+    -->
+
     <link rel="stylesheet" type="text/css" href="fonts.css">
     <style>
 
@@ -18,12 +29,26 @@
         height: 100%;
       }
 
+      #unsupported {
+        display: none;
+      }
+
     </style>
 
   </head>
   <body>
 
-    <canvas></canvas>
+    <noscript>
+      This game requires JavaScript.
+    </noscript>
+
+    <div id="unsupported">
+      <p>This game is not supported in your web browser.</p>
+    </div>
+
+    <canvas>
+      This game requires a browser that supports HTML5 canvas.
+    </canvas>
 
     <script src="bundle.js"></script>
 

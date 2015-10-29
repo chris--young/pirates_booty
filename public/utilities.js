@@ -150,7 +150,7 @@ exports.getWaveRotation = function (partials, o) {
 exports.resetBarrel = function () {
   function moveBarrel() {
     barrel.dead = false;
-    barrel.position.x = SCREEN_WIDTH / 2 + barrel.radius / 2 - 1;
+    barrel.position.x = SCREEN_WIDTH / 2 + barrel.size.w / 2 - 1;
     barrel.position.y = 100;
   }
 
