@@ -2,7 +2,7 @@
 
 ### Author: __Chris Young__ [cyoung@mobiquityinc.com](mailto:cyoung@mobiquityinc.com)
 
-Pirate's Booty is a simple game I made for a presentation I gave at Mobiquity on HTML5 Canvas. The game illustrates the basic functionality of the CanvasRenderingContext2D API. You can play it at [chrisyou.ng/pirates_booty](http://www.chrisyou.ng/pirates_booty). Press any key, or touch anywhere on mobile devices, to shoot your ship's cannon. Destroy barrels to earn gold doubloons. Aim for the high score!
+Pirate's Booty is a simple game I made for a presentation I gave at Mobiquity on HTML5 Canvas. The game illustrates the basic functionality of the CanvasRenderingContext2D API. You can play it at [chrisyou.ng/pirates_booty](https://www.chrisyou.ng/pirates_booty). Press any key, or touch anywhere on mobile devices, to shoot your ship's cannon. Destroy barrels to earn gold doubloons. Aim for the high score!
 
 ## Dependencies
 ````
