@@ -11,6 +11,7 @@ SHIP_SPEED = 4;
 
 scoreAudio = new Audio();
 highScoreAudio = new Audio();
+rainAudio = new Audio();
 highScore = undefined;
 isHighScore = false;
 
@@ -337,6 +338,8 @@ barrel = {
 
   scoreAudio.src = 'audio/score.wav';
   highScoreAudio.src = 'audio/high_score.wav';
+  rainAudio.src = 'audio/rain.mp3';
+  rainAudio.play();
 
   var shipImage,
       barrelImage;

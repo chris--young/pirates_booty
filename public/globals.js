@@ -10,6 +10,7 @@ SHIP_SPEED = 4;
 
 scoreAudio = new Audio();
 highScoreAudio = new Audio();
+rainAudio = new Audio();
 highScore = undefined;
 isHighScore = false;
 

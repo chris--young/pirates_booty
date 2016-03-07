@@ -286,6 +286,8 @@
 
   scoreAudio.src = 'audio/score.wav';
   highScoreAudio.src = 'audio/high_score.wav';
+  rainAudio.src = 'audio/rain.mp3';
+  rainAudio.play();
 
   var shipImage,
       barrelImage;
