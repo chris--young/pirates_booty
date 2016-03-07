@@ -6,6 +6,7 @@
 SCREEN_WIDTH = document.body.offsetWidth;
 SCREEN_HEIGHT = document.body.offsetHeight;
 SAMPLE_RATE = 64;
+SHIP_SPEED = 4;
 
 scoreAudio = new Audio();
 highScoreAudio = new Audio();
@@ -21,8 +22,9 @@ partials = [
 ];
 
 ship = {
-  position: { x: -SCREEN_WIDTH * 0.2, y: 110 },
-  size: { w: 233, h: 264 },
+  position: { x: -SCREEN_WIDTH * 0.2, y: 110 / 2 },
+  size: { w: 233 / 2, h: 264 / 2 },
+  direction: 0,
   rotation: 0,
   score: 0,
   dead: false

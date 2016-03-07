@@ -33,8 +33,94 @@
    * @description: clears the canvas using a sky color
    */
   function drawSky() {
-    context.fillStyle = '#73abc9';
+    context.fillStyle = '#407876'; // '#73abc9';
     context.fillRect(0, 0, canvas.width, canvas.height);
+
+    var grd = context.createLinearGradient(0, 0, 0, canvas.height);
+    grd.addColorStop(0, 'rgba(0, 0, 0, 0.6)');
+    grd.addColorStop(1, 'rgba(0, 0, 0, 0.1)');
+
+    context.fillStyle = grd;
+    context.fillRect(0, 0, canvas.width, canvas.height);
+
+    updateRain();
+    updateClouds();
+  }
+
+  var rain = [];
+  var RAIN_PARTICLES = 600;
+  function updateRain() {
+    for (var i = 0; i < rain.length; i++) {
+      if (rain[i].y > canvas.height * 2)
+        rain.splice(i, 1);
+
+      rain[i].y += rain[i].speed;
+      
+      context.save();
+      context.fillStyle = 'rgba(120, 120, 200, 0.5)';
+      context.translate(canvas.width / -2, canvas.height / -2);
+      context.rotate(Math.PI / 8);
+      context.fillRect(rain[i].x, rain[i].y, 1, rain[i].length);
+      context.restore();
+    }
+
+    if (rain.length < RAIN_PARTICLES) {
+      for (var i = rain.length; i < RAIN_PARTICLES; i++)
+        rain.push({
+          x: Math.floor(Math.random() * canvas.width * 2),
+          y: Math.floor(Math.random() * -41) - canvas.height / 2,
+          speed: Math.random() * 12 + 8,
+          length: (Math.random() * 10 + 1) + 10
+        }); 
+    }
+  }
+
+  var clouds = [];
+  var CLOUD_PARTICLES = 500;
+  function updateClouds() {
+    context.save();
+    for (var i = 0; i < clouds.length; i++) {
+      if (clouds[i].x < -60)
+        clouds.splice(i, 1);
+
+      clouds[i].x -= clouds[i].speed;
+
+      context.fillStyle = 'rgba(20, 20, 20, ' + clouds[i].o + ')';
+      context.beginPath();
+
+      var centerX = clouds[i].x;
+      var centerY = clouds[i].y;
+      var width = clouds[i].w;
+      var height = clouds[i].h;
+        
+      context.moveTo(centerX, centerY - height/2); // A1
+          
+      context.bezierCurveTo(
+        centerX + width/2, centerY - height/2, // C1
+        centerX + width/2, centerY + height/2, // C2
+        centerX, centerY + height/2); // A2
+
+        context.bezierCurveTo(
+          centerX - width/2, centerY + height/2, // C3
+          centerX - width/2, centerY - height/2, // C4
+          centerX, centerY - height/2); // A1
+
+      context.fill();
+      context.closePath();
+    }
+    context.restore();
+
+    if (clouds.length < CLOUD_PARTICLES) {
+      for (var i = clouds.length; i < CLOUD_PARTICLES; i++)
+        clouds.push({
+          x: Math.floor(Math.random() * 200) + canvas.width,
+          y: Math.random() * 60,
+          w: Math.random() * 160 + 80,
+          h: Math.random() * 40 + 20,
+          o: Math.random() / 2,
+          speed: Math.random() * 3 + 1
+        });
+    }
   }
 
   /**
@@ -68,7 +154,7 @@
       partials[p].phase += partials[p].shift;
 
     context.save();
-    context.fillStyle = 'rgba(10, 67, 118, 0.8)';
+    context.fillStyle = 'rgba(40, 47, 120, 0.9)'; // 'rgba(10, 67, 118, 0.8)';
     context.translate(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
     context.beginPath();
     for (var s = -SAMPLE_RATE / 2; s <= SAMPLE_RATE / 2; s++) {
@@ -80,6 +166,14 @@
     context.lineTo(-canvas.width, canvas.height);
     context.closePath();
     context.fill();
+
+    var grd = context.createLinearGradient(0, 0, 0, canvas.height);
+    grd.addColorStop(0, 'rgba(0, 0, 0, 0.2)');
+    grd.addColorStop(1, 'rgba(0, 0, 0, 0.8)');
+
+    context.fillStyle = grd;
+    context.fill();
+
     context.restore();
   }
 
@@ -106,7 +200,7 @@
     }
 
     context.save();
-    context.fillStyle = '#676767';
+    context.fillStyle = '#343434';
     context.translate(SCREEN_WIDTH / 2 + ball.position.x, SCREEN_HEIGHT / 2 + ball.position.y);
     context.beginPath();
     context.arc(0, 0, ball.radius, 0, 2 * Math.PI, false);
@@ -124,7 +218,9 @@
       return;
 
     var y = utilities.getWaveHeight(partials, ship.position.x) - ship.position.y;
+
     ship.rotation = utilities.getWaveRotation(partials, ship);
+    ship.position.x += ship.direction * SHIP_SPEED;
 
     context.save();
     context.translate(SCREEN_WIDTH / 2 + ship.position.x, SCREEN_HEIGHT / 2 + y);
@@ -176,15 +272,14 @@
    */
   function loop() {
     drawSky();
-    drawScore();
-
     context.save();
     context.translate(0, 100);
       updateBall();
-      updateBarrel();
+      // updateBarrel();
       updateShip();
       updateWater();
     context.restore();
+    // drawScore();
 
     requestAnimationFrame(loop);
   }
@@ -235,7 +330,30 @@
   });
 
   window.addEventListener('touchend', shoot);
-  window.addEventListener('keyup', shoot);
+
+  window.addEventListener('keydown', function (event) {
+    switch (event.which) {
+      case 39:
+        ship.direction = 1;
+        break;
+      case 37:
+        ship.direction = -1;
+        break;
+      default:
+        shoot();
+    }
+  });
+
+  window.addEventListener('keyup', function (event) {
+    switch (event.which) {
+      case 39:
+      case 37:
+        ship.direction = 0;
+        break;
+      default:
+        break;
+    }
+  });
 
   // END HANDLE INPUT -------------------------
 
